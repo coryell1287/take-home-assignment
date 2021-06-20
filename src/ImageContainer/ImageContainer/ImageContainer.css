@@ -1,0 +1,18 @@
+.ImageContainer {
+  background-color: azure;
+  border: 24px solid azure;
+  padding: 0;
+}
+
+.container {
+  overflow: hidden;
+  overflow-y: scroll;
+  background-color: gainsboro;
+  height: 580px;
+  max-height: 580px;
+  padding: 0;
+}
+
+img {
+  cursor: pointer;
+}
