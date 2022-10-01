@@ -42,25 +42,28 @@ export const ImageContainer = (): React.ReactElement => {
       loadMoreImages();
     }
   }, [isBottom]);
-  
+
   React.useEffect(() => {
     axios
       .get(
-        `https://picsum.photos/v2/list?page=${params.page}&limit=${params.limit}`
+        `https://picsum.photos/v2/list?page=${params.page}&limit=30`
       )
       .then(({ data }) => {
-        setImages(data);
+        setImages((prev) => {
+          return prev.concat(data);
+        });
       })
       .catch((error) => {
         setErrorMessage(error);
       });
-  }, [params.page, params.limit]);
+    
+  }, [params.page]);
 
   const loadMoreImages = () => {
     setParams((prevState) => {
       return {
         page: prevState.page + 1,
-        limit: prevState.limit + 30,
+        limit: prevState.limit,
       };
     });
     setBottom(false);
